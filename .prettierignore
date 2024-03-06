@@ -1,0 +1,11 @@
+.cache
+.env
+.env.*
+.fleet
+.idea
+.nitro
+.nuxt
+.output
+*.log*
+dist
+node_modules
