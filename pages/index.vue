@@ -44,7 +44,7 @@ function resolvePath(
   lon: string,
   apiKey: string,
   units: "metric" | "imperial" = "metric",
-  lang: string = "th"
+  lang: string = "th",
 ) {
   return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}&lang=${lang}`;
 }
@@ -59,68 +59,22 @@ const { data, pending, error } = useAsyncData<{
         resolve(position);
       },
       () => {
-        reject("Could not get location.");
+        reject(new Error("Could not get location."));
       },
       {
         enableHighAccuracy: true,
-      }
+      },
     );
   });
-  // const res: WeatherApiResponse = await $fetch(
-  //   resolvePath(
-  //     position.coords.latitude.toString(),
-  //     position.coords.longitude.toString(),
-  //     API_KEY,
-  //     "metric",
-  //     "th"
-  //   )
-  // );
-  const res: WeatherApiResponse = {
-    coord: {
-      lon: 103.5069,
-      lat: 16.4325,
-    },
-    weather: [
-      {
-        id: 804,
-        main: "Clouds",
-        description: "เมฆเต็มท้องฟ้า",
-        icon: "04d",
-      },
-    ],
-    base: "stations",
-    main: {
-      temp: 38.29,
-      feels_like: 45.29,
-      temp_min: 35.51,
-      temp_max: 38.29,
-      pressure: 1007,
-      humidity: 99,
-      sea_level: 1007,
-      grnd_level: 990,
-    },
-    visibility: 10000,
-    wind: {
-      speed: 4.31,
-      deg: 248,
-      gust: 3.33,
-    },
-    clouds: {
-      all: 100,
-    },
-    dt: 1709702744,
-    sys: {
-      type: 2,
-      id: 2038185,
-      country: "TH",
-      sunrise: 1709680832,
-      sunset: 1709723653,
-    },
-    timezone: 25200,
-    id: 1610469,
-    name: "กาฬสินธุ์",
-    cod: 200,
-  };
+  const res: WeatherApiResponse = await $fetch(
+    resolvePath(
+      position.coords.latitude.toString(),
+      position.coords.longitude.toString(),
+      API_KEY,
+      "metric",
+      "th",
+    ),
+  );
   return {
     weather: res,
   };
