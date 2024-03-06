@@ -3,6 +3,8 @@
 ### About
 This website is about simple weather app base on your location and time using Nuxt3 and OpenWeatherMap API 
 
+![home page image](./assets/readme/ss1.png)
+
 ### Development Environment
 1. Node version 18.18.0
 2. Firebase CLI version 13.1.0
