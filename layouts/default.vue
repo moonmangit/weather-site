@@ -22,7 +22,7 @@
           <li v-for="(nav, navKey, navIndex) in navigates" :key="navKey">
             <RouterLink
               :to="nav.path"
-              class="flex items-center gap-1 btn btn-ghost btn-sm font-normal # animate__animated animate__fadeInDown animate__faster"
+              class="flex items-center gap-1 btn btn-ghost btn-sm font-normal"
               :disabled="nav.disabled"
               :style="{
                 animationDelay: `${navIndex * 0.1 + 0.25}s`,
