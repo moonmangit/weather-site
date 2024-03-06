@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full relative flex items-center justify-center">
+  <div class="h-full flex flex-col items-center justify-center">
     <div v-if="pending" class="flex flex-col gap-3 items-center justify-center">
       <Icon
         name="mdi:loading"
@@ -13,19 +13,48 @@
           <div class="relative w-[min(150px,100%)] sm:w-full">
             <img
               :src="`https://openweathermap.org/img/wn/${data.weather.weather[0].icon}@4x.png`"
-              class="saturate-0 w-full h-full"
+              class="saturate-0 w-full h-full # animate__animated animate__fadeIn"
             />
             <div class="absolute inset-0 bg-primary mix-blend-lighten"></div>
           </div>
         </div>
         <section class="flex flex-col gap-3 items-center justify-center">
-          <h1 class="text-4xl font-bold">{{ data.weather.name }}</h1>
-          <p class="text-lg">{{ data.weather.weather[0].description }}</p>
-          <p class="text-6xl font-bold">{{ data.weather.main.temp }}°C</p>
-          <p class="text-lg">
+          <h1
+            class="text-4xl font-bold # animate__animated animate__fadeInDown"
+          >
+            {{ data.weather.name }}
+          </h1>
+          <p
+            class="text-lg # animate__animated animate__fadeInUp"
+            :style="{
+              animationDelay: '0.25s',
+            }"
+          >
+            {{ data.weather.weather[0].description }}
+          </p>
+          <p
+            class="text-6xl font-bold flex # animate__animated animate__fadeInUp"
+            :style="{
+              animationDelay: '0.4s',
+            }"
+          >
+            <RunningText :to="data.weather.main.temp" />
+            °C
+          </p>
+          <p
+            class="text-lg # animate__animated animate__fadeInUp"
+            :style="{
+              animationDelay: '0.5s',
+            }"
+          >
             รู้สึกเหมือน {{ data.weather.main.feels_like }}°C
           </p>
-          <p class="text-lg">
+          <p
+            class="text-lg # animate__animated animate__fadeInUp"
+            :style="{
+              animationDelay: '0.6s',
+            }"
+          >
             ต่ำสุด: {{ data.weather.main.temp_min }}°C, สูงสุด:
             {{ data.weather.main.temp_max }}°C
           </p>
@@ -75,6 +104,7 @@ const { data, pending, error } = useAsyncData<{
       "th",
     ),
   );
+
   return {
     weather: res,
   };

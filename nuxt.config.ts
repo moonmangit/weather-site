@@ -1,4 +1,9 @@
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: "อากาศวันนี้",
+    },
+  },
   devtools: { enabled: true },
   modules: [
     "@vueuse/nuxt",
@@ -22,6 +27,7 @@ export default defineNuxtConfig({
         appId: process.env.FIREBASE_APP_ID,
         measurementId: process.env.FIREBASE_MEASUREMENT_ID,
       },
+      metaEndpoint: process.env.META_ENDPOINT,
     },
   },
 
